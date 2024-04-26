@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/ai")
 public class AIController {
+
     @Autowired
     private RemoteApiService remoteApiService;
 
     @PostMapping("/")
     public AI_DTO createUser(@RequestBody AI_DTO ai_dto) {
-        //TODO: Få denne metode til at fungere.
         return remoteApiService.responseFromAI(ai_dto);
     }
+
+
 }

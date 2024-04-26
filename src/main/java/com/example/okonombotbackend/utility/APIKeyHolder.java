@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class APIKeyHolder {
+
     @Value("${CHATGPT_API_KEY}")
     @Getter
     private String chatGPTAPIKey;
