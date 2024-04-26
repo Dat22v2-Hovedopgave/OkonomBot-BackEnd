@@ -1,11 +1,13 @@
 package com.example.okonombotbackend.utility;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
+@Component
 public class MonoApiCaller {
 
     public static <T> Mono<T> callGetApi(Class<T> responseType, String url, Object... urlParams) {

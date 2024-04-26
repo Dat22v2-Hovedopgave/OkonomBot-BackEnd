@@ -20,13 +20,10 @@ public class RemoteApiService {
 
     public AI_DTO responseFromAI(AI_DTO ai_dto){
 
-        //TODO: Indsæt det formateret tekst som skal sendes til gpt.
-        String finalPrompt = "";
-
-        //TODO: Skal doubletjekke om resten bliver gjort rigtigt.
+        //TODO: Være sikke på, at frontend sender én lang string.
+        String finalPrompt = ai_dto.getMessage();
 
         //Now we put the information into chatGPT.
-
         ChatGPTRequest gptRequest = new ChatGPTRequest();
         Message userMessage = new Message("user",finalPrompt);
         gptRequest.addMessage(userMessage);
