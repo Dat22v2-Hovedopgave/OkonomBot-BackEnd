@@ -25,7 +25,7 @@ public class Expense {
     private Subcategory subcategory;
 
     private Double amount;
-    private Date date;
+    private Date date = new Date();
 
     // Getters and Setters
 }
