@@ -1,16 +1,13 @@
-package com.example.okonombotbackend.service;
+package com.example.okonombotbackend.backend.service;
 
-import com.example.okonombotbackend.dto.EarningRequest;
-import com.example.okonombotbackend.dto.EarningResponse;
-import com.example.okonombotbackend.dto.ExpenseResponse;
-import com.example.okonombotbackend.entity.Earning;
-import com.example.okonombotbackend.entity.Subcategory;
-import com.example.okonombotbackend.repository.EarningsRepository;
-import com.example.okonombotbackend.repository.SubcategoryRepository;
-import com.example.okonombotbackend.repository.UserRepository;
+import com.example.okonombotbackend.backend.dto.EarningRequest;
+import com.example.okonombotbackend.backend.dto.EarningResponse;
+import com.example.okonombotbackend.backend.entity.Earning;
+import com.example.okonombotbackend.backend.repository.EarningsRepository;
+import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
+import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 
 @Service
 public class EarningsService {

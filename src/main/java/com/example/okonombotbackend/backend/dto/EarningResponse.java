@@ -1,7 +1,6 @@
-package com.example.okonombotbackend.dto;
+package com.example.okonombotbackend.backend.dto;
 
-import com.example.okonombotbackend.entity.Earning;
-import com.example.okonombotbackend.entity.Expense;
+import com.example.okonombotbackend.backend.entity.Earning;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

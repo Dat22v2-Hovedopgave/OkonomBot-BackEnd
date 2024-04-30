@@ -1,7 +1,6 @@
-package com.example.okonombotbackend.dto;
+package com.example.okonombotbackend.backend.dto;
 
-import com.example.okonombotbackend.entity.Category;
-
+import com.example.okonombotbackend.backend.entity.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

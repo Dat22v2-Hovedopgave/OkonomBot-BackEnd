@@ -1,10 +1,10 @@
-package com.example.okonombotbackend.service;
+package com.example.okonombotbackend.backend.service;
 
-import com.example.okonombotbackend.dto.CategoryResponse;
-import com.example.okonombotbackend.entity.Category;
-import com.example.okonombotbackend.repository.CategoryRepository;
+import com.example.okonombotbackend.backend.dto.CategoryResponse;
+import com.example.okonombotbackend.backend.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.okonombotbackend.backend.entity.Category;
 
 import java.util.List;
 

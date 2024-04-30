@@ -1,17 +1,13 @@
-package com.example.okonombotbackend.service;
+package com.example.okonombotbackend.backend.service;
 
-import com.example.okonombotbackend.dto.ExpenseRequest;
-import com.example.okonombotbackend.dto.ExpenseResponse;
-import com.example.okonombotbackend.entity.Expense;
-import com.example.okonombotbackend.entity.Subcategory;
-import com.example.okonombotbackend.repository.ExpensesRepository;
-import com.example.okonombotbackend.repository.SubcategoryRepository;
-import com.example.okonombotbackend.repository.UserRepository;
+import com.example.okonombotbackend.backend.dto.ExpenseRequest;
+import com.example.okonombotbackend.backend.dto.ExpenseResponse;
+import com.example.okonombotbackend.backend.entity.Expense;
+import com.example.okonombotbackend.backend.repository.ExpensesRepository;
+import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
+import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class ExpensesService {

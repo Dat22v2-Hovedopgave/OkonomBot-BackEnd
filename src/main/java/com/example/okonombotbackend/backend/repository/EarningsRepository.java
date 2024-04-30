@@ -1,6 +1,6 @@
-package com.example.okonombotbackend.repository;
+package com.example.okonombotbackend.backend.repository;
 
-import com.example.okonombotbackend.entity.Earning;
+import com.example.okonombotbackend.backend.entity.Earning;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

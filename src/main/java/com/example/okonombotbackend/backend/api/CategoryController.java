@@ -1,8 +1,8 @@
-package com.example.okonombotbackend.api;
+package com.example.okonombotbackend.backend.api;
 
-import com.example.okonombotbackend.dto.CategoryResponse;
-import com.example.okonombotbackend.entity.Category;
-import com.example.okonombotbackend.service.CategoryService;
+import com.example.okonombotbackend.backend.dto.CategoryResponse;
+import com.example.okonombotbackend.backend.entity.Category;
+import com.example.okonombotbackend.backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

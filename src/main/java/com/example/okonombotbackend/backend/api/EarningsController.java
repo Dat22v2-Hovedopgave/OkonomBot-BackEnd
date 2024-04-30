@@ -1,8 +1,8 @@
-package com.example.okonombotbackend.api;
+package com.example.okonombotbackend.backend.api;
 
-import com.example.okonombotbackend.dto.EarningRequest;
-import com.example.okonombotbackend.entity.Earning;
-import com.example.okonombotbackend.service.EarningsService;
+import com.example.okonombotbackend.backend.dto.EarningRequest;
+import com.example.okonombotbackend.backend.entity.Earning;
+import com.example.okonombotbackend.backend.service.EarningsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
