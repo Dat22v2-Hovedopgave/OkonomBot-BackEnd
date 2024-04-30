@@ -14,8 +14,8 @@ public class SubcategoryResponse {
     private String name;
 
     public SubcategoryResponse(Subcategory subcategory) {
-        this.subcategoryId = subcategory.getSubcategoryId();
-        this.categoryId = subcategory.getCategory().getCategoryId();
+        this.subcategoryId = subcategory.getId();
+        this.categoryId = subcategory.getCategory().getId();
         this.name = subcategory.getName();
     }
 }
