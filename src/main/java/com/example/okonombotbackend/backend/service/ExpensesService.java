@@ -5,7 +5,6 @@ import com.example.okonombotbackend.backend.dto.ExpenseResponse;
 import com.example.okonombotbackend.backend.entity.Expense;
 import com.example.okonombotbackend.backend.repository.ExpensesRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
-import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
