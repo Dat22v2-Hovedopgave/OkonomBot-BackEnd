@@ -14,7 +14,7 @@ public class SubcategoryRequest {
 
     public static SubcategoryRequest getSubcategoryRequest(Subcategory subcategory) {
         SubcategoryRequest subcategoryRequest = new SubcategoryRequest();
-        subcategoryRequest.setCategoryId(subcategory.getCategory().getCategoryId()); // Access the category ID directly
+        subcategoryRequest.setCategoryId(subcategory.getCategory().getId()); // Access the category ID directly
         subcategoryRequest.setName(subcategory.getName());
         return subcategoryRequest;
     }

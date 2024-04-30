@@ -18,9 +18,9 @@ public class ExpenseResponse {
     private Date date;
 
     public ExpenseResponse(Expense expense) {
-        this.expenseId = expense.getExpenseId();
-        this.userId = expense.getUser().getUserId();
-        this.subcategoryId = expense.getSubcategory().getSubcategoryId();
+        this.expenseId = expense.getId();
+        this.userId = expense.getUser().getId();
+        this.subcategoryId = expense.getSubcategory().getId();
         this.amount = expense.getAmount();
         this.date = expense.getDate();
     }

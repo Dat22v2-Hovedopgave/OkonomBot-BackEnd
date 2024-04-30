@@ -18,9 +18,9 @@ public class EarningResponse {
     private Date date;
 
     public EarningResponse(Earning earning) {
-        this.earningId = earning.getEarningId();
-        this.userId = earning.getUser().getUserId();
-        this.subcategoryId = earning.getSubcategory().getSubcategoryId();
+        this.earningId = earning.getId();
+        this.userId = earning.getUser().getId();
+        this.subcategoryId = earning.getSubcategory().getId();
         this.amount = earning.getAmount();
         this.date = earning.getDate();
     }
