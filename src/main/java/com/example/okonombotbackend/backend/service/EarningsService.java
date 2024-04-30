@@ -6,8 +6,11 @@ import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.repository.EarningsRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @Service
 public class EarningsService {
@@ -28,4 +31,10 @@ public class EarningsService {
         return new EarningResponse(earningsRepository.save(earning));
     }
 
+    public List<EarningResponse> getEarningsByUserId(int userId) {
+        List<Earning> allEarnings = earningsRepository.findAll();
+
+        return allEarnings.stream().filter(earning -> earning.getUser().getId() == userId).map(EarningResponse::new).toList();
+
+    }
 }

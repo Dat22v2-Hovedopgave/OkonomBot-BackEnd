@@ -12,10 +12,12 @@ public class SubcategoryResponse {
     private int subcategoryId;
     private int categoryId;
     private String name;
+    private int userId;
 
     public SubcategoryResponse(Subcategory subcategory) {
         this.subcategoryId = subcategory.getId();
         this.categoryId = subcategory.getCategory().getId();
         this.name = subcategory.getName();
+        this.userId = subcategory.getUser().getId();
     }
 }

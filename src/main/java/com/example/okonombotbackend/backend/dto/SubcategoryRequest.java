@@ -11,11 +11,5 @@ import lombok.Setter;
 public class SubcategoryRequest {
     private int categoryId;
     private String name;
-
-    public static SubcategoryRequest getSubcategoryRequest(Subcategory subcategory) {
-        SubcategoryRequest subcategoryRequest = new SubcategoryRequest();
-        subcategoryRequest.setCategoryId(subcategory.getCategory().getId()); // Access the category ID directly
-        subcategoryRequest.setName(subcategory.getName());
-        return subcategoryRequest;
-    }
+    private int userId;
 }

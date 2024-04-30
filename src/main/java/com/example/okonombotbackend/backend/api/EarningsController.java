@@ -1,6 +1,7 @@
 package com.example.okonombotbackend.backend.api;
 
 import com.example.okonombotbackend.backend.dto.EarningRequest;
+import com.example.okonombotbackend.backend.dto.EarningResponse;
 import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.service.EarningsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class EarningsController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Earning> getEarningsByUserId(@PathVariable int userId) {
-        return null;
+    public List<EarningResponse> getEarningsByUserId(@PathVariable int userId) {
+        return earningsService.getEarningsByUserId(userId);
     }
 }
