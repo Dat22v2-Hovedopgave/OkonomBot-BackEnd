@@ -1,8 +1,10 @@
-package com.example.okonombotbackend.backend.api;
+package com.example.okonombotbackend.api;
 
-import com.example.okonombotbackend.backend.entity.Subcategory;
-import com.example.okonombotbackend.backend.service.SubcategoryService;
+import com.example.okonombotbackend.dto.SubcategoryRequest;
+import com.example.okonombotbackend.entity.Subcategory;
+import com.example.okonombotbackend.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,9 +13,9 @@ public class SubcategoryController {
     @Autowired
     private SubcategoryService subcategoryService;
 
-    @PostMapping("/")
-    public Subcategory createSubcategory(@RequestBody Subcategory subcategory) {
-        return null;
+    @PostMapping("/create")
+    public ResponseEntity createSubcategory(@RequestBody SubcategoryRequest body) {
+        return ResponseEntity.ok(subcategoryService.addSubcategory(body));
     }
 
     @GetMapping("/{subcategoryId}")
