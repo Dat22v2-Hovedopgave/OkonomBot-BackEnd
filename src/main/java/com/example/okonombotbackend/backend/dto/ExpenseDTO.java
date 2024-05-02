@@ -12,17 +12,17 @@ import java.util.Date;
 @Getter
 @Setter
 public class ExpenseDTO {
-    private int expenseId;
-    private int userId;
+    private int id;
+    private String username;
     private int subcategoryId;
     private Double amount;
     private Date date;
 
     public static ExpenseDTO getExpenseDTO(Expense expense) {
         ExpenseDTO expenseDTO = new ExpenseDTO();
-        expenseDTO.setExpenseId(expense.getExpenseId());
-        expenseDTO.setUserId(expense.getUser().getUserId());
-        expenseDTO.setSubcategoryId(expense.getSubcategory().getSubcategoryId());
+        expenseDTO.setId(expense.getId());
+        expenseDTO.setUsername(expense.getUser().getUsername());
+        expenseDTO.setSubcategoryId(expense.getSubcategory().getId());
         expenseDTO.setAmount(expense.getAmount());
         expenseDTO.setDate(expense.getDate());
         return expenseDTO;

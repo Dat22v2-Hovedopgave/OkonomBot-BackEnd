@@ -3,10 +3,7 @@ package com.example.okonombotbackend.security.entity;
 
 import com.example.okonombotbackend.security.dto.UserWithRolesRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,10 +22,11 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DISCRIMINATOR_TYPE")
-public class UserWithRoles implements UserDetails {
+public class User implements UserDetails {
 
     @Transient
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -58,17 +56,15 @@ public class UserWithRoles implements UserDetails {
     @CollectionTable(name = "security_role")
     List<Role> roles = new ArrayList<>();
 
-    public UserWithRoles() {}
-
 
    // We will use this constructor when/if users must be created via an HTTP-request
-    public UserWithRoles(UserWithRolesRequest body) {
+    public User(UserWithRolesRequest body) {
         this.username = body.getUsername();
         this.setPassword(body.getPassword());
         this.email = body.getEmail();
     }
 
-    public UserWithRoles(String user, String password, String email){
+    public User(String user, String password, String email){
         this.username = user;
         setPassword(password);
         this.email = email;

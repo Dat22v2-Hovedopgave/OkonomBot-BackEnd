@@ -1,10 +1,12 @@
 package com.example.okonombotbackend.backend.api;
 
 import com.example.okonombotbackend.backend.dto.UserDTO;
-import com.example.okonombotbackend.backend.entity.User;
+import com.example.okonombotbackend.security.entity.User;
 import com.example.okonombotbackend.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -21,4 +23,5 @@ public class UserController {
     public UserDTO getUserById(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
+
 }

@@ -1,6 +1,6 @@
 package com.example.okonombotbackend.backend.dto;
 
-import com.example.okonombotbackend.backend.entity.User;
+import com.example.okonombotbackend.security.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,17 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO {
-    private int userId;
+    private int id;
     private String username;
     private String email;
-    private String passwordHash;
+    private String password;
 
     public static UserDTO getUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
-        userDTO.setPasswordHash(user.getPasswordHash());
+        userDTO.setPassword(user.getPassword());
         return userDTO;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.okonombotbackend.backend.entity;
 
+import com.example.okonombotbackend.security.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,10 +15,10 @@ import java.util.Date;
 public class Earning {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int earningId;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "username", nullable = false)
     private User user;
 
     @ManyToOne

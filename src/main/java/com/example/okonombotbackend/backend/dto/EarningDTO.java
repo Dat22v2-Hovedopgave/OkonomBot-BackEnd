@@ -13,16 +13,16 @@ import java.util.Date;
 @Setter
 public class EarningDTO {
     private int earningId;
-    private int userId;
+    private String username;
     private int subcategoryId;
     private Double amount;
     private Date date;
 
     public static EarningDTO getEarningDTO(Earning earning) {
         EarningDTO earningDTO = new EarningDTO();
-        earningDTO.setEarningId(earning.getEarningId());
-        earningDTO.setUserId(earning.getUser().getUserId());
-        earningDTO.setSubcategoryId(earning.getSubcategory().getSubcategoryId()); 
+        earningDTO.setEarningId(earning.getId());
+        earningDTO.setUsername(earning.getUser().getUsername());
+        earningDTO.setSubcategoryId(earning.getSubcategory().getId());
         earningDTO.setAmount(earning.getAmount());
         earningDTO.setDate(earning.getDate());
         return earningDTO;

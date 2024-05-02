@@ -13,7 +13,7 @@ import lombok.*;
 public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int subcategoryId;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)

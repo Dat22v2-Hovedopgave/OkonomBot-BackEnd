@@ -10,14 +10,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SubcategoryDTO {
-    private int subcategoryId;
+    private int id;
     private int categoryId;
     private String name;
 
     public static SubcategoryDTO getSubcategoryDTO(Subcategory subcategory) {
         SubcategoryDTO subcategoryDTO = new SubcategoryDTO();
-        subcategoryDTO.setSubcategoryId(subcategory.getSubcategoryId());
-        subcategoryDTO.setCategoryId(subcategory.getCategory().getCategoryId()); // Access the category ID directly
+        subcategoryDTO.setId(subcategory.getId());
+        subcategoryDTO.setCategoryId(subcategory.getCategory().getId()); // Access the category ID directly
         subcategoryDTO.setName(subcategory.getName());
         return subcategoryDTO;
     }

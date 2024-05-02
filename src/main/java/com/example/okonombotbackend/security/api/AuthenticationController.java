@@ -2,7 +2,7 @@ package com.example.okonombotbackend.security.api;
 
 import com.example.okonombotbackend.security.dto.LoginRequest;
 import com.example.okonombotbackend.security.dto.LoginResponse;
-import com.example.okonombotbackend.security.entity.UserWithRoles;
+import com.example.okonombotbackend.security.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +49,7 @@ public class AuthenticationController {
       UsernamePasswordAuthenticationToken uat = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
       Authentication authentication = authenticationManager.authenticate(uat);
 
-      UserWithRoles user = (UserWithRoles) authentication.getPrincipal();
+      User user = (User) authentication.getPrincipal();
       Instant now = Instant.now();
       long expiry = tokenExpiration;
       String scope = authentication.getAuthorities().stream()

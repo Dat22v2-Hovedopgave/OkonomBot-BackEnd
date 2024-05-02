@@ -1,7 +1,7 @@
 package com.example.okonombotbackend.backend.service;
 
 import com.example.okonombotbackend.backend.dto.UserDTO;
-import com.example.okonombotbackend.backend.entity.User;
+import com.example.okonombotbackend.security.entity.User;
 import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,9 @@ public class UserService {
 
     private UserDTO convertToUser(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
-        userDTO.setPasswordHash(user.getPasswordHash());
+        userDTO.setPassword(user.getPassword());
         return userDTO;
     }
 }

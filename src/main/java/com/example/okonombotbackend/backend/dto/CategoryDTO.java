@@ -10,13 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CategoryDTO {
-    private int categoryId;
+    private int id;
     private String name;
     private Category.Type type;
 
     public static CategoryDTO getCategoryDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setCategoryId(category.getCategoryId());
+        categoryDTO.setId(category.getId());
         categoryDTO.setName(category.getName());
         categoryDTO.setType(category.getType());
         return categoryDTO;
