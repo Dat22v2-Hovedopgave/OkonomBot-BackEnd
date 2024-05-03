@@ -95,24 +95,28 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create subcategory 1 linked to Salary
         Subcategory bonus = new Subcategory();
+        bonus.setUser(user2);
         bonus.setName("Bonus");
         bonus.setCategory(category1);
         subcategoryRepository.save(bonus);
 
         // Create subcategory 2 linked to Rent
         Subcategory apartmentRent = new Subcategory();
+        apartmentRent.setUser(user1);
         apartmentRent.setName("Apartment Rent");
         apartmentRent.setCategory(category2);
         subcategoryRepository.save(apartmentRent);
 
         // Create subcategory 3 linked to Utilities
         Subcategory electricity = new Subcategory();
+        electricity.setUser(user2);
         electricity.setName("Electricity");
         electricity.setCategory(category3);
         subcategoryRepository.save(electricity);
 
         // Create subcategory 4 linked to Groceries
         Subcategory freshProduce = new Subcategory();
+        freshProduce.setUser(user1);
         freshProduce.setName("Fresh Produce");
         freshProduce.setCategory(category4);
         subcategoryRepository.save(freshProduce);

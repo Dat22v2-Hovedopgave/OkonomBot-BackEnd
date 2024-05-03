@@ -12,14 +12,14 @@ import java.util.Date;
 @Setter
 public class EarningResponse {
     private int earningId;
-    private int userId;
+    private String username;
     private int subcategoryId;
     private Double amount;
     private Date date;
 
     public EarningResponse(Earning earning) {
         this.earningId = earning.getId();
-        this.userId = earning.getUser().getId();
+        this.username = earning.getUser().getUsername();
         this.subcategoryId = earning.getSubcategory().getId();
         this.amount = earning.getAmount();
         this.date = earning.getDate();

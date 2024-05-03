@@ -22,7 +22,7 @@ public class ExpensesService {
 
     public ExpenseResponse addExpense(ExpenseRequest body) {
         Expense expense = new Expense();
-        expense.setUser(userRepository.findUserById(body.getUserId()));
+        expense.setUser(userRepository.findUserByUsername(body.getUsername()));
         expense.setSubcategory(subcategoryRepository.findSubcategoryById(body.getSubcategoryId()));
         expense.setAmount(body.getAmount());
 

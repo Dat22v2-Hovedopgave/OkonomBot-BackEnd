@@ -22,7 +22,7 @@ public class EarningsService {
 
     public EarningResponse addEarning(EarningRequest body) {
         Earning earning = new Earning();
-        earning.setUser(userRepository.findUserById(body.getUserId()));
+        earning.setUser(userRepository.findUserByUsername(body.getUsername()));
         earning.setSubcategory(subcategoryRepository.findSubcategoryById(body.getSubcategoryId()));
         earning.setAmount(body.getAmount());
         return new EarningResponse(earningsRepository.save(earning));

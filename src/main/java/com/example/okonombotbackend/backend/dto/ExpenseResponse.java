@@ -12,14 +12,14 @@ import java.util.Date;
 @Setter
 public class ExpenseResponse {
     private int expenseId;
-    private int userId;
+    private String username;
     private int subcategoryId;
     private Double amount;
     private Date date;
 
     public ExpenseResponse(Expense expense) {
         this.expenseId = expense.getId();
-        this.userId = expense.getUser().getId();
+        this.username = expense.getUser().getUsername();
         this.subcategoryId = expense.getSubcategory().getId();
         this.amount = expense.getAmount();
         this.date = expense.getDate();
