@@ -1,7 +1,7 @@
 package com.example.okonombotbackend.backend.service;
 
 import com.example.okonombotbackend.backend.dto.UserDTO;
-import com.example.okonombotbackend.backend.entity.User;
+import com.example.okonombotbackend.security.entity.User;
 import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +15,21 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public UserDTO getUserById(int userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDTO getUserById(String username) {
+        User user;
+        try {
+            user = userRepository.findUserByUsername(username);
+        } catch(Error error){
+            throw new RuntimeException("User not found");
+        }
         return convertToUser(user);
     }
 
     private UserDTO convertToUser(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
-        userDTO.setPasswordHash(user.getPasswordHash());
+        userDTO.setPassword(user.getPassword());
         return userDTO;
     }
 }
