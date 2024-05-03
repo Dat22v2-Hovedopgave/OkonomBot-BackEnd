@@ -19,9 +19,9 @@ public class UserController {
         return userService.saveUser(user);
     }
 
-    @GetMapping("/{userId}")
-    public UserDTO getUserById(@PathVariable int userId) {
-        return userService.getUserById(userId);
+    @GetMapping("/{username}")
+    public UserDTO getUserById(@PathVariable String username) {
+        return userService.getUserById(username);
     }
 
 }

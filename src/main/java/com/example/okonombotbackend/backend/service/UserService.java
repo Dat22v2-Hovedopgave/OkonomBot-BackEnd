@@ -15,8 +15,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public UserDTO getUserById(int userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    public UserDTO getUserById(String username) {
+        User user;
+        try {
+            user = userRepository.findUserByUsername(username);
+        } catch(Error error){
+            throw new RuntimeException("User not found");
+        }
         return convertToUser(user);
     }
 
