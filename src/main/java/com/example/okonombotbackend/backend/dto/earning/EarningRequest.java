@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EarningRequest {
-    private int userId;
+    private String username;
     private int subcategoryId;
     private Double amount;
 }

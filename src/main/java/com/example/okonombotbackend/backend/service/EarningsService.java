@@ -26,7 +26,7 @@ public class EarningsService {
 
     public EarningResponse addEarning(EarningRequest body) {
         Earning earning = new Earning();
-        earning.setUser(userRepository.findUserById(body.getUserId()));
+        earning.setUser(userRepository.findUserByUsername(body.getUsername()));
 
         //if user already has the same subcategory, then update the amount to the existing subcategory
 
