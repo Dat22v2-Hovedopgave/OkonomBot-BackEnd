@@ -1,10 +1,8 @@
-package com.example.okonombotbackend.backend.dto;
+package com.example.okonombotbackend.backend.dto.earning;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @NoArgsConstructor
 @Getter
