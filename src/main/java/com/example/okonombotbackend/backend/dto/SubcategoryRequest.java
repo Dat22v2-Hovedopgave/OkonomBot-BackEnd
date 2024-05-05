@@ -11,5 +11,5 @@ import lombok.Setter;
 public class SubcategoryRequest {
     private int categoryId;
     private String name;
-    private int userId;
+    private String username;
 }

@@ -2,7 +2,6 @@ package com.example.okonombotbackend.backend.api;
 
 import com.example.okonombotbackend.backend.dto.earning.EarningDetailedResponse;
 import com.example.okonombotbackend.backend.dto.earning.EarningRequest;
-import com.example.okonombotbackend.backend.dto.earning.EarningResponse;
 import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.service.EarningsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,9 @@ public class EarningsController {
         return ResponseEntity.ok(earningsService.addEarning(body));
     }
 
-    @GetMapping("/user/{userId}")
-    public List<EarningDetailedResponse> getEarningsByUserId(@PathVariable int userId) { //TODO: ændr til username
-        return earningsService.getEarningsByUserId(userId);
+    @GetMapping("/user/{username}")
+    public List<EarningDetailedResponse> getEarningsByUsername(@PathVariable String username) {
+        return earningsService.getEarningsByUsername(username);
     }
 
     @PostMapping("/addEarnings")

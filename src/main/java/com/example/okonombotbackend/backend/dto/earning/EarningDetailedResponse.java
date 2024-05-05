@@ -11,23 +11,23 @@ import java.util.Date;
 @Setter
 public class EarningDetailedResponse {
     private int earningId;
-    private int userId;
     private String username;
     private int subcategoryId;
     private Double amount;
     private Date date;
     private String subcategoryName;
     private String categoryName;
+    private int categoryId;
 
     public EarningDetailedResponse(Earning earning) {
         this.earningId = earning.getId();
-        this.userId = earning.getUser().getId();
         this.username = earning.getUser().getUsername();
         this.subcategoryId = earning.getSubcategory().getId();
         this.amount = earning.getAmount();
         this.date = earning.getDate();
         this.subcategoryName = earning.getSubcategory().getName();
         this.categoryName = earning.getSubcategory().getCategory().getName();
+        this.categoryId = earning.getSubcategory().getCategory().getId();
     }
 
 }

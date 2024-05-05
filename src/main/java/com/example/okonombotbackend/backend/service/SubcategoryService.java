@@ -25,7 +25,7 @@ public class SubcategoryService {
         Subcategory subcategory = new Subcategory();
         subcategory.setName(subcategoryRequest.getName());
         subcategory.setCategory(categoryRepository.findCategoryById(subcategoryRequest.getCategoryId()));
-        subcategory.setUser(userRepository.findUserById(subcategoryRequest.getUserId()));
+        subcategory.setUser(userRepository.findUserByUsername(subcategoryRequest.getUsername()));
 
         return new SubcategoryResponse(subcategoryRepository.save(subcategory));
     }
