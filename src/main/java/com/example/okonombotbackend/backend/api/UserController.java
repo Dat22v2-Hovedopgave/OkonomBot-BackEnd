@@ -1,12 +1,11 @@
 package com.example.okonombotbackend.backend.api;
 
-import com.example.okonombotbackend.backend.dto.UserDTO;
-import com.example.okonombotbackend.security.entity.User;
+import com.example.okonombotbackend.backend.dto.UserRequest;
+import com.example.okonombotbackend.backend.dto.UserResponse;
 import com.example.okonombotbackend.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -15,12 +14,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createUser")
-    public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    public ResponseEntity createUser(@RequestBody UserRequest userRequest) throws Exception {
+        return userService.saveUser(userRequest);
     }
 
     @GetMapping("/{username}")
-    public UserDTO getUserById(@PathVariable String username) {
+    public UserResponse getUserById(@PathVariable String username) {
         return userService.getUserById(username);
     }
 
