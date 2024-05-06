@@ -1,5 +1,6 @@
 package com.example.okonombotbackend.backend.entity;
 
+import com.example.okonombotbackend.security.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,13 +14,14 @@ import lombok.*;
 public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int subcategoryId;
-
+    private int id;
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "username", nullable = false)
+    private User user;
 
-    // Getters and Setters
+    private String name;
 }

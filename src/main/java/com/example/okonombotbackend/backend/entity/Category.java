@@ -12,7 +12,7 @@ import lombok.*;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
+    private int id;
     private String name;
     @Enumerated(EnumType.STRING)
     private Type type;
@@ -21,5 +21,4 @@ public class Category {
         earning, expense
     }
 
-    // Getters and Setters
 }
