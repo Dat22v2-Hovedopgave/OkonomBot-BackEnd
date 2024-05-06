@@ -121,6 +121,13 @@ public class DeveloperData implements ApplicationRunner {
         freshProduce.setCategory(category4);
         subcategoryRepository.save(freshProduce);
 
+        // Create subcategory 5 linked to Salary
+        Subcategory generalInvestments = new Subcategory();
+        generalInvestments.setUser(user2);
+        generalInvestments.setName("General Investments");
+        generalInvestments.setCategory(category1);
+        subcategoryRepository.save(generalInvestments);
+
         // Create expense 1 for user1 on Rent
         Expense expense1 = new Expense();
         expense1.setUser(user1);
@@ -160,6 +167,24 @@ public class DeveloperData implements ApplicationRunner {
         earning2.setAmount(750.00);
         earning2.setDate(new Date());
         earningsRepository.save(earning2);
+
+        //copy of earning 1 for user2
+        Earning earning3 = new Earning();
+        earning3.setUser(user2);
+        earning3.setSubcategory(bonus);
+        earning3.setAmount(2500.00);
+        earning3.setDate(new Date());
+        earningsRepository.save(earning3);
+
+        // Create earning 4 for user2 with General Investments
+        Earning earning4 = new Earning();
+        earning4.setUser(user2);
+        earning4.setSubcategory(generalInvestments);
+        earning4.setAmount(750.00);
+        earning4.setDate(new Date());
+        earningsRepository.save(earning4);
+
+
 
     }
 

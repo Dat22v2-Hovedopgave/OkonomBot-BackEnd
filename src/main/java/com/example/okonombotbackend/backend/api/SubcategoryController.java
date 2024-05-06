@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/subcategories")
 public class SubcategoryController {
     @Autowired
     private SubcategoryService subcategoryService;
 
-    @PostMapping("/create")
-    public ResponseEntity createSubcategory(@RequestBody SubcategoryRequest body) {
+    @PostMapping("/addSubcategory")
+    public ResponseEntity addSubcategory(@RequestBody SubcategoryRequest body) {
         return ResponseEntity.ok(subcategoryService.addSubcategory(body));
     }
 
