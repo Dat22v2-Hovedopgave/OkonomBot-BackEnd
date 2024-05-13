@@ -37,4 +37,12 @@ public class EarningsController {
         response.put("message", "Successfully added earnings! " + earnings.size() + " earnings added");
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/{earningId}")
+    public ResponseEntity<?> deleteEarning(@PathVariable int earningId) {
+        earningsService.deleteEarning(earningId);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Successfully deleted earning with id " + earningId);
+        return ResponseEntity.ok(response);
+    }
 }

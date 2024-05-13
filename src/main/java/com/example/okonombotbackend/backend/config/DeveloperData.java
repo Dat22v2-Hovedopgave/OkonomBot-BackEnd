@@ -48,7 +48,7 @@ public class DeveloperData implements ApplicationRunner {
 
         User user2 = new User();
         user2.setUsername("Ferhat");
-        user2.setPassword("beaver");
+        user2.setPassword("yippy");
         user2.setEmail("pappaspizza@gmail.com");
         userRepository.save(user2);
 

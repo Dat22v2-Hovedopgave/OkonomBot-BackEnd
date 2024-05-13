@@ -7,6 +7,7 @@ import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.repository.EarningsRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
+import com.example.okonombotbackend.security.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,8 +47,10 @@ public class EarningsService {
     public List<EarningDetailedResponse> getEarningsByUsername(String username) {
         List<Earning> allEarnings = earningsRepository.findAll();
 
-        return allEarnings.stream().filter(earning -> Objects.equals(earning.getUser().getUsername(), username)).map(EarningDetailedResponse::new).toList();
-
+        return allEarnings.stream()
+                .filter(earning -> earning.getUser().getUsername().equalsIgnoreCase(username))
+                .map(EarningDetailedResponse::new)
+                .toList();
     }
 
     public List<Earning> addEarnings(List<EarningRequest> body) {
@@ -74,5 +77,9 @@ public class EarningsService {
             responses.add(earning);
         }
         return responses;
+    }
+
+    public void deleteEarning(int earningId) {
+        earningsRepository.deleteById(earningId);
     }
 }
