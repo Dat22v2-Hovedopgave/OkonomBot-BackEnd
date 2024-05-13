@@ -1,13 +1,19 @@
 package com.example.okonombotbackend.backend.service;
 
-import com.example.okonombotbackend.backend.dto.ExpenseRequest;
-import com.example.okonombotbackend.backend.dto.ExpenseResponse;
+import com.example.okonombotbackend.backend.dto.earning.EarningDetailedResponse;
+import com.example.okonombotbackend.backend.dto.expense.ExpenseDetailedResponse;
+import com.example.okonombotbackend.backend.dto.expense.ExpenseRequest;
+import com.example.okonombotbackend.backend.dto.expense.ExpenseResponse;
+import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.entity.Expense;
 import com.example.okonombotbackend.backend.repository.ExpensesRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ExpensesService {
@@ -29,4 +35,40 @@ public class ExpensesService {
         return new ExpenseResponse(expensesRepository.save(expense));
 
     }
+
+    public List<Expense> addExpenses(List<ExpenseRequest> body) {
+        List<Expense> responses = new ArrayList<>();
+
+        for (ExpenseRequest expenseRequest : body) {
+            Expense expense = new Expense();
+            expense.setUser(userRepository.findUserByUsername(expenseRequest.getUsername()));
+
+            if (expensesRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId())) {
+                Expense existingExpense = expensesRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId());
+                expense.setId(existingExpense.getId());
+                expense.setSubcategory(existingExpense.getSubcategory());
+                expense.setAmount(expenseRequest.getAmount());
+                existingExpense.setAmount(expenseRequest.getAmount());
+                expensesRepository.save(existingExpense);
+            } else {
+                expense.setSubcategory(subcategoryRepository.findSubcategoryById(expenseRequest.getSubcategoryId()));
+                expense.setAmount(expenseRequest.getAmount());
+                expensesRepository.save(expense);
+            }
+            responses.add(expense);
+        }
+        return responses;
+    }
+
+    public void deleteExpense(int expenseId) {
+        expensesRepository.deleteById(expenseId);
+    }
+
+    public List<ExpenseDetailedResponse> getExpensesByUsername(String username) {
+        List<Expense> allExpenses = expensesRepository.findAll();
+
+        return allExpenses.stream()
+            .filter(expense -> expense.getUser().getUsername().equalsIgnoreCase(username))
+            .map(ExpenseDetailedResponse::new)
+            .toList();    }
 }

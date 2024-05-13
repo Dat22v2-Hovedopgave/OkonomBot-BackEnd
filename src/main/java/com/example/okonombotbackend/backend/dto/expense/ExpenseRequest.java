@@ -1,4 +1,4 @@
-package com.example.okonombotbackend.backend.dto;
+package com.example.okonombotbackend.backend.dto.expense;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

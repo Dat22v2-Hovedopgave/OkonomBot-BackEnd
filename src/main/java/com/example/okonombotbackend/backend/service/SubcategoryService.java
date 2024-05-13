@@ -3,6 +3,7 @@ package com.example.okonombotbackend.backend.service;
 import com.example.okonombotbackend.backend.dto.SubcategoryRequest;
 import com.example.okonombotbackend.backend.dto.SubcategoryResponse;
 import com.example.okonombotbackend.backend.dto.earning.EarningRequest;
+import com.example.okonombotbackend.backend.dto.expense.ExpenseRequest;
 import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.entity.Subcategory;
 import com.example.okonombotbackend.backend.repository.CategoryRepository;
@@ -25,6 +26,9 @@ public class SubcategoryService {
     @Autowired
     EarningsService earningsService;
 
+    @Autowired
+    ExpensesService expensesService;
+
 
 
     public SubcategoryResponse addSubcategory(SubcategoryRequest subcategoryRequest) {
@@ -35,12 +39,22 @@ public class SubcategoryService {
 
         Subcategory subcategory1 = subcategoryRepository.save(subcategory);
 
+        //If subcategory is an expense, create an expense for the subcategory
+        if (subcategoryRequest.getCategoryId() == 2 || subcategoryRequest.getCategoryId() == 4 || subcategoryRequest.getCategoryId() == 5){
+            // Create an expense for the subcategory
+            ExpenseRequest expenseRequest = new ExpenseRequest();
+            expenseRequest.setAmount(0.0);
+            expenseRequest.setSubcategoryId(subcategory.getId());
+            expenseRequest.setUsername(subcategoryRequest.getUsername());
+            expensesService.addExpense(expenseRequest);
+        } else {
         // Create an earning for the subcategory
         EarningRequest earningRequest = new EarningRequest();
         earningRequest.setAmount(0.0);
         earningRequest.setSubcategoryId(subcategory.getId());
         earningRequest.setUsername(subcategoryRequest.getUsername());
         earningsService.addEarning(earningRequest);
+        }
 
         return new SubcategoryResponse(subcategory1);
     }
