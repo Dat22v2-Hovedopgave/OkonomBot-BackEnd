@@ -12,16 +12,25 @@ import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class SubcategoryService {
-    @Autowired
-    private SubcategoryRepository subcategoryRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    public SubcategoryService(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
+        this.subcategoryRepository = subcategoryRepository;
+        this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
+    }
 
-    @Autowired
-    private UserRepository userRepository;
+    SubcategoryRepository subcategoryRepository;
+
+    CategoryRepository categoryRepository;
+
+    UserRepository userRepository;
+
+
 
     @Autowired
     EarningsService earningsService;
@@ -40,7 +49,7 @@ public class SubcategoryService {
         Subcategory subcategory1 = subcategoryRepository.save(subcategory);
 
         //If subcategory is an expense, create an expense for the subcategory
-        if (subcategoryRequest.getCategoryId() == 2 || subcategoryRequest.getCategoryId() == 4 || subcategoryRequest.getCategoryId() == 5){
+        if (subcategoryRequest.getCategoryId() == 2 || subcategoryRequest.getCategoryId() == 4 || subcategoryRequest.getCategoryId() == 5){ //TODO: Lav om på dette logik
             // Create an expense for the subcategory
             ExpenseRequest expenseRequest = new ExpenseRequest();
             expenseRequest.setAmount(0.0);
@@ -57,5 +66,16 @@ public class SubcategoryService {
         }
 
         return new SubcategoryResponse(subcategory1);
+    }
+
+    public List<SubcategoryResponse> findSubcategories(String username) {
+        List<Subcategory> subcategories = subcategoryRepository.findAllByUserUsername(username);
+        List<SubcategoryResponse> responses = new ArrayList<>();
+
+        for (Subcategory subcategory : subcategories) {
+            SubcategoryResponse tmpResponse = new SubcategoryResponse(subcategory);
+            responses.add(tmpResponse);
+        }
+        return responses;
     }
 }

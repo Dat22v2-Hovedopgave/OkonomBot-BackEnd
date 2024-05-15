@@ -1,5 +1,6 @@
 package com.example.okonombotbackend.backend.api;
 
+import com.example.okonombotbackend.backend.dto.SubcategoryResponse;
 import com.example.okonombotbackend.backend.dto.earning.EarningDetailedResponse;
 import com.example.okonombotbackend.backend.dto.earning.EarningRequest;
 import com.example.okonombotbackend.backend.entity.Earning;
@@ -45,4 +46,5 @@ public class EarningsController {
         response.put("message", "Successfully deleted earning with id " + earningId);
         return ResponseEntity.ok(response);
     }
+
 }

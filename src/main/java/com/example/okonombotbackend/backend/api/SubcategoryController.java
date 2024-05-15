@@ -1,11 +1,14 @@
 package com.example.okonombotbackend.backend.api;
 
 import com.example.okonombotbackend.backend.dto.SubcategoryRequest;
+import com.example.okonombotbackend.backend.dto.SubcategoryResponse;
 import com.example.okonombotbackend.backend.entity.Subcategory;
 import com.example.okonombotbackend.backend.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -22,5 +25,10 @@ public class SubcategoryController {
     @GetMapping("/{subcategoryId}")
     public Subcategory getSubcategoryById(@PathVariable int subcategoryId) {
         return null;
+    }
+
+    @GetMapping("/byusername/{username}") //TODO: UNUSED
+    public List<SubcategoryResponse> getSubcategoriesByUsername(@PathVariable String username) {
+        return subcategoryService.findSubcategories(username);
     }
 }
