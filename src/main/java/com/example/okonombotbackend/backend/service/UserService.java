@@ -2,7 +2,7 @@ package com.example.okonombotbackend.backend.service;
 
 import com.example.okonombotbackend.backend.dto.UserRequest;
 import com.example.okonombotbackend.backend.dto.UserResponse;
-import com.example.okonombotbackend.security.entity.User;
+import com.example.okonombotbackend.security.entity.Users;
 import com.example.okonombotbackend.backend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,36 +20,36 @@ public class UserService {
         if(userRepository.existsByUsername(userRequest.getUsername())){
             throw new Exception("Username already in use.");
         }
-        User user = requestToUser(userRequest);
-        userRepository.save(user);
+        Users users = requestToUser(userRequest);
+        userRepository.save(users);
 
         return ResponseEntity.ok(true);
     }
 
     public UserResponse getUserById(String username) {
-        User user;
+        Users users;
         try {
-            user = userRepository.findUserByUsername(username);
+            users = userRepository.findUsersByUsername(username);
         } catch(Error error){
             throw new RuntimeException("User not found");
         }
-        return entityToResponse(user);
+        return entityToResponse(users);
     }
 
-    public User requestToUser(UserRequest body) {
-        User user = new User();
-        user.setPassword(body.getPassword());
-        user.setUsername(body.getUsername());
-        user.setEmail(body.getEmail());
-        return user;
+    public Users requestToUser(UserRequest body) {
+        Users users = new Users();
+        users.setPassword(body.getPassword());
+        users.setUsername(body.getUsername());
+        users.setEmail(body.getEmail());
+        return users;
     }
 
-    private UserResponse entityToResponse(User user) {
+    private UserResponse entityToResponse(Users users) {
         UserResponse responseTmp = new UserResponse();
-        responseTmp.setUsername(user.getUsername());
-        responseTmp.setEmail(user.getEmail());
-        responseTmp.setCreated(user.getCreated());
-        responseTmp.setLastEdited(user.getEdited());
+        responseTmp.setUsername(users.getUsername());
+        responseTmp.setEmail(users.getEmail());
+        responseTmp.setCreated(users.getCreated());
+        responseTmp.setLastEdited(users.getEdited());
         return responseTmp;
     }
 }

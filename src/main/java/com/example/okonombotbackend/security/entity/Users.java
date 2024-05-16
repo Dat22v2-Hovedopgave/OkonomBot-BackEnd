@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DISCRIMINATOR_TYPE")
-public class User implements UserDetails {
+public class Users implements UserDetails {
 
     @Transient
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -58,13 +58,13 @@ public class User implements UserDetails {
 
 
    // We will use this constructor when/if users must be created via an HTTP-request
-    public User(UserWithRolesRequest body) {
+    public Users(UserWithRolesRequest body) {
         this.username = body.getUsername();
         this.setPassword(body.getPassword());
         this.email = body.getEmail();
     }
 
-    public User(String user, String password, String email){
+    public Users(String user, String password, String email){
         this.username = user;
         setPassword(password);
         this.email = email;

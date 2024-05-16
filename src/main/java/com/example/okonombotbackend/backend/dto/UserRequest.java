@@ -1,6 +1,6 @@
 package com.example.okonombotbackend.backend.dto;
 
-import com.example.okonombotbackend.security.entity.User;
+import com.example.okonombotbackend.security.entity.Users;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,11 +13,11 @@ public class UserRequest {
     private String email;
     private String password;
 
-    public static UserRequest requestFromUser(User user) {
+    public static UserRequest requestFromUser(Users users) {
         UserRequest userRequest = new UserRequest();
-        userRequest.setUsername(user.getUsername());
-        userRequest.setEmail(user.getEmail());
-        userRequest.setPassword(user.getPassword());
+        userRequest.setUsername(users.getUsername());
+        userRequest.setEmail(users.getEmail());
+        userRequest.setPassword(users.getPassword());
         return userRequest;
     }
 }

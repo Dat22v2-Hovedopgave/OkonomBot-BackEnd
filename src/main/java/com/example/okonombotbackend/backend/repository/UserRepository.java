@@ -1,12 +1,11 @@
 package com.example.okonombotbackend.backend.repository;
 
-import com.example.okonombotbackend.security.entity.User;
+import com.example.okonombotbackend.security.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.okonombotbackend.backend.dto.UserRequest;
 
 
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User findUserByUsername(String username);
+public interface UserRepository extends JpaRepository<Users, Integer> {
+    Users findUsersByUsername(String username);
 
     boolean existsByEmail(String email);
 

@@ -19,7 +19,7 @@ public class ExpenseResponse {
 
     public ExpenseResponse(Expense expense) {
         this.expenseId = expense.getId();
-        this.username = expense.getUser().getUsername();
+        this.username = expense.getUsers().getUsername();
         this.subcategoryId = expense.getSubcategory().getId();
         this.amount = expense.getAmount();
         this.date = expense.getDate();

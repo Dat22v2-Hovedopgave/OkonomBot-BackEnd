@@ -7,13 +7,11 @@ import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.repository.EarningsRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
-import com.example.okonombotbackend.security.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class EarningsService {
@@ -28,12 +26,12 @@ public class EarningsService {
 
     public EarningResponse addEarning(EarningRequest body) {
         Earning earning = new Earning();
-        earning.setUser(userRepository.findUserByUsername(body.getUsername()));
+        earning.setUsers(userRepository.findUsersByUsername(body.getUsername()));
 
         //if user already has the same subcategory, then update the amount to the existing subcategory
 
-            if (earningsRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(body.getUsername()), body.getSubcategoryId())) {
-                Earning existingEarning = earningsRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(body.getUsername()), body.getSubcategoryId());
+            if (earningsRepository.existsByUsersAndSubcategoryId(userRepository.findUsersByUsername(body.getUsername()), body.getSubcategoryId())) {
+                Earning existingEarning = earningsRepository.findByUsersAndSubcategoryId(userRepository.findUsersByUsername(body.getUsername()), body.getSubcategoryId());
                 existingEarning.setAmount(body.getAmount());
                 return new EarningResponse(earningsRepository.save(existingEarning));
 
@@ -48,7 +46,7 @@ public class EarningsService {
         List<Earning> allEarnings = earningsRepository.findAll();
 
         return allEarnings.stream()
-                .filter(earning -> earning.getUser().getUsername().equalsIgnoreCase(username))
+                .filter(earning -> earning.getUsers().getUsername().equalsIgnoreCase(username))
                 .map(EarningDetailedResponse::new)
                 .toList();
     }
@@ -60,10 +58,10 @@ public class EarningsService {
 
         for (EarningRequest earningRequest : body) {
             Earning earning = new Earning();
-            earning.setUser(userRepository.findUserByUsername(earningRequest.getUsername()));
+            earning.setUsers(userRepository.findUsersByUsername(earningRequest.getUsername()));
 
-            if (earningsRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId())) {
-                Earning existingEarning = earningsRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId());
+            if (earningsRepository.existsByUsersAndSubcategoryId(userRepository.findUsersByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId())) {
+                Earning existingEarning = earningsRepository.findByUsersAndSubcategoryId(userRepository.findUsersByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId());
                 earning.setId(existingEarning.getId());
                 earning.setSubcategory(existingEarning.getSubcategory());
                 earning.setAmount(earningRequest.getAmount());

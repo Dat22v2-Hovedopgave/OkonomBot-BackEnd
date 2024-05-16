@@ -1,6 +1,5 @@
 package com.example.okonombotbackend.backend.dto.expense;
 
-import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.entity.Expense;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ public class ExpenseDetailedResponse {
 
     public ExpenseDetailedResponse(Expense expense) {
         this.expenseId = expense.getId();
-        this.username = expense.getUser().getUsername();
+        this.username = expense.getUsers().getUsername();
         this.subcategoryId = expense.getSubcategory().getId();
         this.amount = expense.getAmount();
         this.date = expense.getDate();

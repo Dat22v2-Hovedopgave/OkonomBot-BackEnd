@@ -1,6 +1,6 @@
 package com.example.okonombotbackend.backend.entity;
 
-import com.example.okonombotbackend.security.entity.User;
+import com.example.okonombotbackend.security.entity.Users;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +21,7 @@ public class Subcategory {
 
     @ManyToOne
     @JoinColumn(name = "username", nullable = false)
-    private User user;
+    private Users users;
 
     private String name;
 }

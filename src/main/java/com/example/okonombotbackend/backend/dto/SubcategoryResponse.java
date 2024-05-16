@@ -18,6 +18,6 @@ public class SubcategoryResponse {
         this.subcategoryId = subcategory.getId();
         this.categoryId = subcategory.getCategory().getId();
         this.name = subcategory.getName();
-        this.username = subcategory.getUser().getUsername();
+        this.username = subcategory.getUsers().getUsername();
     }
 }
