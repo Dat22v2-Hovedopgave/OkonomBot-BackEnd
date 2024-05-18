@@ -1,4 +1,4 @@
-package com.example.okonombotbackend.service;
+package com.example.okonombotbackend.backend.service;
 
 import com.example.okonombotbackend.backend.service.EarningsService;
 import com.example.okonombotbackend.backend.service.ExpensesService;
@@ -6,6 +6,7 @@ import com.example.okonombotbackend.backend.service.SubcategoryService;
 import com.example.okonombotbackend.backend.repository.CategoryRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
+import com.example.okonombotbackend.backend.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,5 +26,10 @@ public class TestConfig {
     @Bean
     public ExpensesService expensesService() {
         return new ExpensesService();
+    }
+
+    @Bean
+    public UserService userService() {
+        return new UserService();
     }
 }

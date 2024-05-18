@@ -5,7 +5,7 @@ import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.entity.Expense;
 import com.example.okonombotbackend.backend.entity.Subcategory;
 import com.example.okonombotbackend.backend.repository.*;
-import com.example.okonombotbackend.security.entity.Users;
+import com.example.okonombotbackend.security.entity.User;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
@@ -36,29 +36,29 @@ public class DeveloperData implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         //Methods to run.
 
-        Users users1 = new Users();
-        users1.setUsername("Adolf");
-        users1.setPassword("yippy");
-        users1.setEmail("takemeback@mail.com");
-        userRepository.save(users1);
+        User user1 = new User();
+        user1.setUsername("Adolf");
+        user1.setPassword("yippy");
+        user1.setEmail("takemeback@mail.com");
+        userRepository.save(user1);
 
-        Users users2 = new Users();
-        users2.setUsername("Ferhat");
-        users2.setPassword("yippy");
-        users2.setEmail("pappaspizza@gmail.com");
-        userRepository.save(users2);
+        User user2 = new User();
+        user2.setUsername("Ferhat");
+        user2.setPassword("yippy");
+        user2.setEmail("pappaspizza@gmail.com");
+        userRepository.save(user2);
 
-        Users users3 = new Users();
-        users3.setUsername("Kristian");
-        users3.setPassword("stor beaver");
-        users3.setEmail("krille@mail.com");
-        userRepository.save(users3);
+        User user3 = new User();
+        user3.setUsername("Kristian");
+        user3.setPassword("stor beaver");
+        user3.setEmail("krille@mail.com");
+        userRepository.save(user3);
 
-        Users users4 = new Users();
-        users4.setUsername("jon");
-        users4.setPassword("dengru");
-        users4.setEmail("joon@mail.com");
-        userRepository.save(users4);
+        User user4 = new User();
+        user4.setUsername("jon");
+        user4.setPassword("dengru");
+        user4.setEmail("joon@mail.com");
+        userRepository.save(user4);
 
         Category category1 = new Category();
         category1.setName("Salary");
@@ -91,42 +91,42 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create subcategory 1 linked to Salary
         Subcategory bonus = new Subcategory();
-        bonus.setUsers(users2);
+        bonus.setUser(user2);
         bonus.setName("Bonus");
         bonus.setCategory(category1);
         subcategoryRepository.save(bonus);
 
         // Create subcategory 2 linked to Rent
         Subcategory apartmentRent = new Subcategory();
-        apartmentRent.setUsers(users1);
+        apartmentRent.setUser(user1);
         apartmentRent.setName("Apartment Rent");
         apartmentRent.setCategory(category2);
         subcategoryRepository.save(apartmentRent);
 
         // Create subcategory 3 linked to Utilities
         Subcategory electricity = new Subcategory();
-        electricity.setUsers(users2);
+        electricity.setUser(user2);
         electricity.setName("Electricity");
         electricity.setCategory(category3);
         subcategoryRepository.save(electricity);
 
         // Create subcategory 4 linked to Groceries
         Subcategory freshProduce = new Subcategory();
-        freshProduce.setUsers(users1);
+        freshProduce.setUser(user1);
         freshProduce.setName("Fresh Produce");
         freshProduce.setCategory(category4);
         subcategoryRepository.save(freshProduce);
 
         // Create subcategory 5 linked to Salary
         Subcategory generalInvestments = new Subcategory();
-        generalInvestments.setUsers(users2);
+        generalInvestments.setUser(user2);
         generalInvestments.setName("General Investments");
         generalInvestments.setCategory(category1);
         subcategoryRepository.save(generalInvestments);
 
         // Create expense 1 for user1 on Rent
         Expense expense1 = new Expense();
-        expense1.setUsers(users1);
+        expense1.setUser(user1);
         expense1.setSubcategory(apartmentRent);
         expense1.setAmount(1200.00);
         expense1.setDate(new Date()); // Today's date
@@ -134,7 +134,7 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create expense 2 for user2 on Electricity
         Expense expense2 = new Expense();
-        expense2.setUsers(users2);
+        expense2.setUser(user2);
         expense2.setSubcategory(apartmentRent);
         expense2.setAmount(300.00);
         expense2.setDate(new Date());
@@ -142,7 +142,7 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create expense 3 for user3 on Groceries
         Expense expense3 = new Expense();
-        expense3.setUsers(users3);
+        expense3.setUser(user3);
         expense3.setSubcategory(freshProduce);
         expense3.setAmount(150.00);
         expense3.setDate(new Date());
@@ -150,7 +150,7 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create earning 1 for user1 with Bonus
         Earning earning1 = new Earning();
-        earning1.setUsers(users1);
+        earning1.setUser(user1);
         earning1.setSubcategory(bonus);
         earning1.setAmount(2500.00);
         earning1.setDate(new Date()); // Today's date
@@ -158,7 +158,7 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create earning 2 for user2 with General Investments
         Earning earning2 = new Earning();
-        earning2.setUsers(users2);
+        earning2.setUser(user2);
         earning2.setSubcategory(electricity);
         earning2.setAmount(750.00);
         earning2.setDate(new Date());
@@ -166,7 +166,7 @@ public class DeveloperData implements ApplicationRunner {
 
         //copy of earning 1 for user2
         Earning earning3 = new Earning();
-        earning3.setUsers(users2);
+        earning3.setUser(user2);
         earning3.setSubcategory(bonus);
         earning3.setAmount(2500.00);
         earning3.setDate(new Date());
@@ -174,7 +174,7 @@ public class DeveloperData implements ApplicationRunner {
 
         // Create earning 4 for user2 with General Investments
         Earning earning4 = new Earning();
-        earning4.setUsers(users2);
+        earning4.setUser(user2);
         earning4.setSubcategory(generalInvestments);
         earning4.setAmount(750.00);
         earning4.setDate(new Date());

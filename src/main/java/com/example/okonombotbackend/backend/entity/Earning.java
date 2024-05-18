@@ -1,6 +1,6 @@
 package com.example.okonombotbackend.backend.entity;
 
-import com.example.okonombotbackend.security.entity.Users;
+import com.example.okonombotbackend.security.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +19,7 @@ public class Earning {
 
     @ManyToOne
     @JoinColumn(name = "username", nullable = false)
-    private Users users;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id", nullable = false)

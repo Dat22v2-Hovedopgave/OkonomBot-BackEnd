@@ -26,7 +26,7 @@ public class ExpensesService {
 
     public ExpenseResponse addExpense(ExpenseRequest body) {
         Expense expense = new Expense();
-        expense.setUsers(userRepository.findUsersByUsername(body.getUsername()));
+        expense.setUser(userRepository.findUserByUsername(body.getUsername()));
         expense.setSubcategory(subcategoryRepository.findSubcategoryById(body.getSubcategoryId()));
         expense.setAmount(body.getAmount());
 
@@ -39,10 +39,10 @@ public class ExpensesService {
 
         for (ExpenseRequest expenseRequest : body) {
             Expense expense = new Expense();
-            expense.setUsers(userRepository.findUsersByUsername(expenseRequest.getUsername()));
+            expense.setUser(userRepository.findUserByUsername(expenseRequest.getUsername()));
 
-            if (expensesRepository.existsByUsersAndSubcategoryId(userRepository.findUsersByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId())) {
-                Expense existingExpense = expensesRepository.findByUsersAndSubcategoryId(userRepository.findUsersByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId());
+            if (expensesRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId())) {
+                Expense existingExpense = expensesRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(expenseRequest.getUsername()), expenseRequest.getSubcategoryId());
                 expense.setId(existingExpense.getId());
                 expense.setSubcategory(existingExpense.getSubcategory());
                 expense.setAmount(expenseRequest.getAmount());
@@ -66,7 +66,7 @@ public class ExpensesService {
         List<Expense> allExpenses = expensesRepository.findAll();
 
         return allExpenses.stream()
-            .filter(expense -> expense.getUsers().getUsername().equalsIgnoreCase(username))
+            .filter(expense -> expense.getUser().getUsername().equalsIgnoreCase(username))
             .map(ExpenseDetailedResponse::new)
             .toList();    }
 }
