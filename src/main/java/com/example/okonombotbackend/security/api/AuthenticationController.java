@@ -2,7 +2,7 @@ package com.example.okonombotbackend.security.api;
 
 import com.example.okonombotbackend.security.dto.LoginRequest;
 import com.example.okonombotbackend.security.dto.LoginResponse;
-import com.example.okonombotbackend.security.entity.Users;
+import com.example.okonombotbackend.security.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +49,7 @@ public class AuthenticationController {
       UsernamePasswordAuthenticationToken uat = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
       Authentication authentication = authenticationManager.authenticate(uat);
 
-      Users users = (Users) authentication.getPrincipal();
+      User user = (User) authentication.getPrincipal();
       Instant now = Instant.now();
       long expiry = tokenExpiration;
       String scope = authentication.getAuthorities().stream()
@@ -60,7 +60,7 @@ public class AuthenticationController {
               .issuedAt(now)
               .audience(Arrays.asList("not used"))
               .expiresAt(now.plusSeconds(tokenExpiration))
-              .subject(users.getUsername())
+              .subject(user.getUsername())
               .claim("roles",scope)
               .build();
 
@@ -69,9 +69,9 @@ public class AuthenticationController {
       String token = encoder.encode(JwtEncoderParameters.from(jwsHeader, claims)).getTokenValue();
 
 
-      List<String> roles = users.getRoles().stream().map(role->role.toString()).collect(Collectors.toList());
+      List<String> roles = user.getRoles().stream().map(role->role.toString()).collect(Collectors.toList());
       return ResponseEntity.ok()
-              .body(new LoginResponse(users.getUsername(),token,roles));
+              .body(new LoginResponse(user.getUsername(),token,roles));
     } catch (BadCredentialsException ex) {
       throw ex;
       //throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Username or password wrong");

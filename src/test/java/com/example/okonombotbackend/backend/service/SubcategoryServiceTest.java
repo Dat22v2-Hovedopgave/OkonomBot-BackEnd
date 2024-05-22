@@ -1,27 +1,22 @@
-package com.example.okonombotbackend.service;
+package com.example.okonombotbackend.backend.service;
 
 import com.example.okonombotbackend.backend.dto.SubcategoryRequest;
 import com.example.okonombotbackend.backend.dto.SubcategoryResponse;
 import com.example.okonombotbackend.backend.entity.Category;
 import com.example.okonombotbackend.backend.entity.Subcategory;
 import com.example.okonombotbackend.backend.repository.*;
-import com.example.okonombotbackend.backend.service.SubcategoryService;
-import com.example.okonombotbackend.security.entity.Users;
-import jakarta.transaction.Transactional;
+import com.example.okonombotbackend.security.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.annotation.Rollback;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest
 @Import(TestConfig.class)
-@Transactional
-@Rollback
 class SubcategoryServiceTest {
 
     @Autowired
@@ -45,17 +40,17 @@ class SubcategoryServiceTest {
     @BeforeEach
     public void initData(){
 
-    Users users1 = new Users();
-        users1.setUsername("Adolf");
-        users1.setPassword("yippy");
-        users1.setEmail("takemeback@mail.com");
-        userRepository.save(users1);
+    User user1 = new User();
+        user1.setUsername("Adolf");
+        user1.setPassword("yippy");
+        user1.setEmail("takemeback@mail.com");
+        userRepository.save(user1);
 
-    Users users2 = new Users();
-        users2.setUsername("Ferhat");
-        users2.setPassword("yippy");
-        users2.setEmail("pappaspizza@gmail.com");
-        userRepository.save(users2);
+    User user2 = new User();
+        user2.setUsername("Ferhat");
+        user2.setPassword("yippy");
+        user2.setEmail("pappaspizza@gmail.com");
+        userRepository.save(user2);
 
     Category category1 = new Category();
         category1.setName("Salary");
@@ -70,14 +65,14 @@ class SubcategoryServiceTest {
 
         // Create subcategory 1 linked to Salary
     Subcategory bonus = new Subcategory();
-        bonus.setUsers(users2);
+        bonus.setUser(user2);
         bonus.setName("Bonus");
         bonus.setCategory(category1);
         subcategoryRepository.save(bonus);
 
         // Create subcategory 2 linked to Rent
     Subcategory apartmentRent = new Subcategory();
-        apartmentRent.setUsers(users1);
+        apartmentRent.setUser(user1);
         apartmentRent.setName("Apartment Rent");
         apartmentRent.setCategory(category2);
         subcategoryRepository.save(apartmentRent);
@@ -87,7 +82,7 @@ class SubcategoryServiceTest {
     void addSubcategory() {
 
         Subcategory apartmentRent = new Subcategory();
-        apartmentRent.setUsers(userRepository.findUsersByUsername("Ferhat"));
+        apartmentRent.setUser(userRepository.findUserByUsername("Ferhat"));
         apartmentRent.setName("Apartment Rent");
         apartmentRent.setCategory(categoryRepository.findCategoryById(2));
 

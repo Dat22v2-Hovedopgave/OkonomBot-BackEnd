@@ -19,7 +19,7 @@ public class EarningResponse {
 
     public EarningResponse(Earning earning) {
         this.earningId = earning.getId();
-        this.username = earning.getUsers().getUsername();
+        this.username = earning.getUser().getUsername();
         this.subcategoryId = earning.getSubcategory().getId();
         this.amount = earning.getAmount();
         this.date = earning.getDate();

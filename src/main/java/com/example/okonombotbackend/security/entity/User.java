@@ -24,9 +24,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "`user`")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DISCRIMINATOR_TYPE")
-public class Users implements UserDetails {
+public class User implements UserDetails {
 
     @Transient
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -58,13 +59,13 @@ public class Users implements UserDetails {
 
 
    // We will use this constructor when/if users must be created via an HTTP-request
-    public Users(UserWithRolesRequest body) {
+    public User(UserWithRolesRequest body) {
         this.username = body.getUsername();
         this.setPassword(body.getPassword());
         this.email = body.getEmail();
     }
 
-    public Users(String user, String password, String email){
+    public User(String user, String password, String email){
         this.username = user;
         setPassword(password);
         this.email = email;

@@ -26,12 +26,12 @@ public class EarningsService {
 
     public EarningResponse addEarning(EarningRequest body) {
         Earning earning = new Earning();
-        earning.setUsers(userRepository.findUsersByUsername(body.getUsername()));
+        earning.setUser(userRepository.findUserByUsername(body.getUsername()));
 
         //if user already has the same subcategory, then update the amount to the existing subcategory
 
-            if (earningsRepository.existsByUsersAndSubcategoryId(userRepository.findUsersByUsername(body.getUsername()), body.getSubcategoryId())) {
-                Earning existingEarning = earningsRepository.findByUsersAndSubcategoryId(userRepository.findUsersByUsername(body.getUsername()), body.getSubcategoryId());
+            if (earningsRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(body.getUsername()), body.getSubcategoryId())) {
+                Earning existingEarning = earningsRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(body.getUsername()), body.getSubcategoryId());
                 existingEarning.setAmount(body.getAmount());
                 return new EarningResponse(earningsRepository.save(existingEarning));
 
@@ -46,7 +46,7 @@ public class EarningsService {
         List<Earning> allEarnings = earningsRepository.findAll();
 
         return allEarnings.stream()
-                .filter(earning -> earning.getUsers().getUsername().equalsIgnoreCase(username))
+                .filter(earning -> earning.getUser().getUsername().equalsIgnoreCase(username))
                 .map(EarningDetailedResponse::new)
                 .toList();
     }
@@ -58,10 +58,10 @@ public class EarningsService {
 
         for (EarningRequest earningRequest : body) {
             Earning earning = new Earning();
-            earning.setUsers(userRepository.findUsersByUsername(earningRequest.getUsername()));
+            earning.setUser(userRepository.findUserByUsername(earningRequest.getUsername()));
 
-            if (earningsRepository.existsByUsersAndSubcategoryId(userRepository.findUsersByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId())) {
-                Earning existingEarning = earningsRepository.findByUsersAndSubcategoryId(userRepository.findUsersByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId());
+            if (earningsRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId())) {
+                Earning existingEarning = earningsRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId());
                 earning.setId(existingEarning.getId());
                 earning.setSubcategory(existingEarning.getSubcategory());
                 earning.setAmount(earningRequest.getAmount());
