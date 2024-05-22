@@ -7,13 +7,11 @@ import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.repository.EarningsRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
 import com.example.okonombotbackend.backend.repository.UserRepository;
-import com.example.okonombotbackend.security.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class EarningsService {

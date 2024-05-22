@@ -1,10 +1,8 @@
 package com.example.okonombotbackend.backend.service;
 
-import com.example.okonombotbackend.backend.dto.earning.EarningDetailedResponse;
 import com.example.okonombotbackend.backend.dto.expense.ExpenseDetailedResponse;
 import com.example.okonombotbackend.backend.dto.expense.ExpenseRequest;
 import com.example.okonombotbackend.backend.dto.expense.ExpenseResponse;
-import com.example.okonombotbackend.backend.entity.Earning;
 import com.example.okonombotbackend.backend.entity.Expense;
 import com.example.okonombotbackend.backend.repository.ExpensesRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;

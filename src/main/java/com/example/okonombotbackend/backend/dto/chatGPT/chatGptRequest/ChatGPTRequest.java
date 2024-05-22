@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Builder
 public class ChatGPTRequest {
-    public String model = "gpt-3.5-turbo";
+    public String model = "gpt-4o";
     public ArrayList<Message> messages;
     public int max_tokens = 400;
 
@@ -18,7 +18,15 @@ public class ChatGPTRequest {
     public void addMessage(Message newMessage){
         if(messages == null){
             messages = new ArrayList<>();
-            final String content = "You are an economic expert, in Danish analyze the data being sent, and give recommendations. The minus signifies a spending and positive numbers are income. Only give recommendations if the spending/income seems excessive. Also give general advice on economics when necessary. Max 300 tokens.";
+            final String content = "Du er en dansk økonomisk ekspert der skal rådgive en almen dansk borger " +
+                "Jeg vil sende dig mit budget for indtægter og udgifter. " +
+                "Et negativt tal er en udgift, og et positivt tal er en indtægt. " +
+                "Tallene er angivet i DKK. " +
+                "Vær realistisk og sammenlign dataene med den gennemsnitlige danske økonomi." +
+                "Start med at vurdere personens indtægter, og sig hvilken samfundsklasse han ligger." +
+                "Giv kort generelle råd om økonomi, hvis er nødvendigt. Giv også personlig økonomisk rådgiving" +
+                "Response skal være uden tekst formatering. Maks 300 tokens";
+
             Message system = new Message("system", content);
             messages.add(system);
         }

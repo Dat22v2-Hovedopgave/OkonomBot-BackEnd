@@ -11,6 +11,8 @@ import lombok.Setter;
 public class UserRequest {
     private String username;
     private String email;
+
+
     private String password;
 
     public static UserRequest requestFromUser(User user) {
@@ -20,4 +22,12 @@ public class UserRequest {
         userRequest.setPassword(user.getPassword());
         return userRequest;
     }
+
+    public UserRequest(User user) {
+        this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+    }
+
+
 }

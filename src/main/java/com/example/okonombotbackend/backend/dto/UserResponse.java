@@ -1,7 +1,6 @@
 package com.example.okonombotbackend.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.example.okonombotbackend.security.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class UserService {
+
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     public ResponseEntity<Boolean> saveUser(UserRequest userRequest) throws Exception {
         if(userRepository.existsByEmail(userRequest.getEmail())){
@@ -20,29 +21,28 @@ public class UserService {
         if(userRepository.existsByUsername(userRequest.getUsername())){
             throw new Exception("Username already in use.");
         }
-        User user = requestToUser(userRequest);
+        User user = userRepository.findUserByUsername(userRequest.getUsername());
+
         userRepository.save(user);
 
         return ResponseEntity.ok(true);
     }
 
-    public UserResponse getUserById(String username) {
-        User user;
-        try {
-            user = userRepository.findUserByUsername(username);
-        } catch(Error error){
+    public UserResponse getUserByUsername(String username) {
+        User user = userRepository.findUserByUsername(username);
+        if(user == null){
             throw new RuntimeException("User not found");
         }
         return entityToResponse(user);
     }
 
-    public User requestToUser(UserRequest body) {
-        User user = new User();
-        user.setPassword(body.getPassword());
-        user.setUsername(body.getUsername());
-        user.setEmail(body.getEmail());
-        return user;
-    }
+/*    public Users requestToUser(UserRequest body) { //TODO: DELETE?
+        Users users = new Users();
+        users.setPassword(body.getPassword());
+        users.setUsername(body.getUsername());
+        users.setEmail(body.getEmail());
+        return users;
+    }*/
 
     private UserResponse entityToResponse(User user) {
         UserResponse responseTmp = new UserResponse();
