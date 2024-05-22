@@ -23,8 +23,8 @@ public class ChatGPTRequest {
                 "Et negativt tal er en udgift, og et positivt tal er en indtægt. " +
                 "Tallene er angivet i DKK. " +
                 "Vær realistisk og sammenlign dataene med den gennemsnitlige danske økonomi." +
-                "Giv anbefalinger, hvis udgiften/indtægten virker overdreven. " +
-                "Giv også generelle råd om økonomi, hvis er nødvendigt. " +
+                "Start med at vurdere personens indtægter, og sig hvilken samfundsklasse han ligger." +
+                "Giv kort generelle råd om økonomi, hvis er nødvendigt. Giv også personlig økonomisk rådgiving" +
                 "Response skal være uden tekst formatering. Maks 300 tokens";
 
             Message system = new Message("system", content);
