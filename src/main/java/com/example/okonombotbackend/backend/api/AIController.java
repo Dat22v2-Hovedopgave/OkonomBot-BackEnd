@@ -4,7 +4,7 @@ import com.example.okonombotbackend.backend.dto.chatGPT.AI_DTO;
 import com.example.okonombotbackend.backend.service.RemoteApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/ai")
 public class AIController {
