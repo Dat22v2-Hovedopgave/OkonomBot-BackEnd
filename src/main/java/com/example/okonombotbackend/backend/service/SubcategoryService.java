@@ -4,6 +4,7 @@ import com.example.okonombotbackend.backend.dto.SubcategoryRequest;
 import com.example.okonombotbackend.backend.dto.SubcategoryResponse;
 import com.example.okonombotbackend.backend.dto.earning.EarningRequest;
 import com.example.okonombotbackend.backend.dto.expense.ExpenseRequest;
+import com.example.okonombotbackend.backend.entity.Category;
 import com.example.okonombotbackend.backend.entity.Subcategory;
 import com.example.okonombotbackend.backend.repository.CategoryRepository;
 import com.example.okonombotbackend.backend.repository.SubcategoryRepository;
@@ -46,7 +47,7 @@ public class SubcategoryService {
         Subcategory subcategory1 = subcategoryRepository.save(subcategory);
 
         //If subcategory is an expense, create an expense for the subcategory
-        if (subcategoryRequest.getCategoryId() == 2 || subcategoryRequest.getCategoryId() == 4 || subcategoryRequest.getCategoryId() == 5){
+        if (subcategory.getCategory().getType() == Category.Type.expense) {
             // Create an expense for the subcategory
             ExpenseRequest expenseRequest = new ExpenseRequest();
             expenseRequest.setAmount(0.0);
