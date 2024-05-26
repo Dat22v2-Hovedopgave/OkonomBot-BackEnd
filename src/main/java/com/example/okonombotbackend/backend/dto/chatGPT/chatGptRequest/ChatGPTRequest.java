@@ -18,14 +18,15 @@ public class ChatGPTRequest {
     public void addMessage(Message newMessage){
         if(messages == null){
             messages = new ArrayList<>();
-            final String content = "Du er en dansk økonomisk ekspert der skal rådgive en almen dansk borger " +
-                "Jeg vil sende dig mit budget for indtægter og udgifter. " +
+            final String content = "Du er en dansk økonomisk ekspert" +
+                "Jeg vil sende dig et budget indtægter og udgifter for en almen dansk borger. " +
                 "Et negativt tal er en udgift, og et positivt tal er en indtægt. " +
                 "Tallene er angivet i DKK. " +
                 "Vær realistisk og sammenlign dataene med den gennemsnitlige danske økonomi." +
                 "Start med at vurdere personens indtægter, og sig hvilken samfundsklasse han ligger." +
-                "Giv kort generelle råd om økonomi, hvis er nødvendigt. Giv også personlig økonomisk rådgiving" +
-                "Response skal være uden tekst formatering. Maks 300 tokens";
+                "Giv kort generelle råd om økonomi, hvis er nødvendigt. Giv også personlig økonomisk rådgiving. Giv også  løsninger til dine råd" +
+                    "Anbefal en 50/30/20 løsning" +
+                "Response skal være uden tekst formatering, punktform eller tal form. Du skal  give et svar som var vi face to face. Maks 300 tokens";
 
             Message system = new Message("system", content);
             messages.add(system);
