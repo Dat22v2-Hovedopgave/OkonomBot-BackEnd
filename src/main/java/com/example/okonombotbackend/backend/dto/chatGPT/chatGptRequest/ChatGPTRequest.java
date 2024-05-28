@@ -25,7 +25,7 @@ public class ChatGPTRequest {
                 Et negativt tal er en udgift, og et positivt tal er en indtægt. Tallene er angivet i DKK. 
                 Det eneste jeg kræver er økonomiske anbefalinger. vær realistisk og sammenlign dataene med den gennemsnitlige danske økonomi. 
                 Formatér ikke teksten. Gør svaret så kort og konkret som muligt, list ikke tallene, som du får.
-                Anbefal en 50/30/20 løsning Maks 2000 tokens.
+                Anbefal tips til økonomien Maks 2000 tokens.
                 """;
 
 
