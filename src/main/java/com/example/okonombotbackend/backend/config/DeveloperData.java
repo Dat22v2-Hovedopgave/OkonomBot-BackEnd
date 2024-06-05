@@ -61,6 +61,7 @@ public class DeveloperData implements ApplicationRunner {
         createCategory("Gæld", Category.Type.expense);
         createCategory("Renter", Category.Type.earning);
         createCategory("Andet", Category.Type.earning);
+        createCategory("Opsparing", Category.Type.earning);
 
         // Create expenses for user2
         createExpense(user2, "Husleje", 7000.00, "Hjem");
