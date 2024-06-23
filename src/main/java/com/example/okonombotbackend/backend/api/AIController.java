@@ -15,7 +15,7 @@ public class AIController {
 
     //Henter respons fra ai. Tager imod data fra frontend og sender det videre til remoteApiService
     @PostMapping("/")
-    public AI_DTO createUser(@RequestBody AI_DTO ai_dto) {
+    public AI_DTO getResponseFromAI(@RequestBody AI_DTO ai_dto) {
         return remoteApiService.responseFromAI(ai_dto);
     }
 

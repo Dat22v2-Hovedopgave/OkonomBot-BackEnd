@@ -55,7 +55,7 @@ public class SubcategoryService {
             expenseRequest.setUsername(subcategoryRequest.getUsername());
             expensesService.addExpense(expenseRequest);
         } else {
-        // Create an earning for the subcategory
+        // Otherwise create an earning for the subcategory
         EarningRequest earningRequest = new EarningRequest();
         earningRequest.setAmount(0.0);
         earningRequest.setSubcategoryId(subcategory.getId());

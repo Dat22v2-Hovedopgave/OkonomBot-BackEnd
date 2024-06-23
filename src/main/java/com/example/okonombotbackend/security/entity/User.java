@@ -1,6 +1,7 @@
 package com.example.okonombotbackend.security.entity;
 
 
+import com.example.okonombotbackend.backend.dto.UserRequest;
 import com.example.okonombotbackend.security.dto.UserWithRolesRequest;
 import jakarta.persistence.*;
 import lombok.*;
@@ -69,6 +70,12 @@ public class User implements UserDetails {
         this.username = user;
         setPassword(password);
         this.email = email;
+    }
+
+    public User(UserRequest userRequest) {
+        this.username = userRequest.getUsername();
+        this.email = userRequest.getEmail();
+        setPassword(userRequest.getPassword());
     }
 
     public void setPassword(String pw){

@@ -18,34 +18,40 @@ public class RemoteApiService {
     @Autowired
     APIKeyHolder apiKeyHolder;
 
-    public AI_DTO responseFromAI(AI_DTO ai_dto){
-
-        //TODO: Være sikke på, at frontend sender én lang string.
+    public AI_DTO responseFromAI(AI_DTO ai_dto) {
+        // Extract message from AI_DTO
         String finalPrompt = ai_dto.getMessage();
 
-        //Now we put the information into chatGPT.
+        // Create a ChatGPT request
         ChatGPTRequest gptRequest = new ChatGPTRequest();
-        Message userMessage = new Message("user",finalPrompt);
-        gptRequest.addMessage(userMessage);
+        Message userMessage = new Message("user", finalPrompt); // Create a user message
+        gptRequest.addMessage(userMessage); // Add message to the request
+
+        // Get response from ChatGPT API
         ChatGPTResponse chatGPTResponse = getChatGPTResponse(gptRequest);
 
-
+        // Create a new AI_DTO with the response message
         AI_DTO tmpAi_dto = new AI_DTO();
         tmpAi_dto.setMessage(chatGPTResponse.getChoices().get(0).getMessage().getContent());
 
+        // Return the new AI_DTO
         return tmpAi_dto;
     }
 
-    public ChatGPTResponse getChatGPTResponse(ChatGPTRequest body){
-        String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-        return MonoApiCaller.callPostApi(ChatGPTResponse.class, OPENAI_API_URL,
-                body, headersWithAuthorization(apiKeyHolder.getChatGPTAPIKey())).block();
+    public ChatGPTResponse getChatGPTResponse(ChatGPTRequest body) {
+        String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions"; // OpenAI API URL
+
+        // Call the API and return the response
+        return MonoApiCaller.callPostApi(ChatGPTResponse.class, OPENAI_API_URL, body, headersWithAuthorization(apiKeyHolder.getChatGPTAPIKey())).block();
     }
 
     private Map<String, String> headersWithAuthorization(String bearerToken) {
+        // Create headers with Content-Type and Authorization
         Map<String, String> headers = new HashMap<>();
-        headers.put("Content-Type","application/json");
-        headers.put("Authorization","Bearer " + bearerToken);
+        headers.put("Content-Type", "application/json");
+        headers.put("Authorization", "Bearer " + bearerToken);
+
+        // Return the headers map
         return headers;
     }
 

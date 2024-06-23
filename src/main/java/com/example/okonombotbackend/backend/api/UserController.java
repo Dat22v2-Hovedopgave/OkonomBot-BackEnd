@@ -15,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createUser")
-    public ResponseEntity createUser(@RequestBody UserRequest userRequest) throws Exception {
+    public ResponseEntity<?> createUser(@RequestBody UserRequest userRequest) throws Exception {
         return userService.saveUser(userRequest);
     }
 
