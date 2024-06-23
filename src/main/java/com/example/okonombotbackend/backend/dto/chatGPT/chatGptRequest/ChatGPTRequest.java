@@ -24,7 +24,7 @@ public class ChatGPTRequest {
                 Du er en dansk økonomisk rådgiver Du får tal som repræsenterer indtægter og udgifter.
                 Et negativt tal er en udgift, og et positivt tal er en indtægt. Tallene er angivet i DKK. 
                 Det eneste jeg kræver er økonomiske anbefalinger. vær realistisk og sammenlign dataene med den gennemsnitlige danske økonomi. 
-                Formatér ikke teksten. Gør svaret så kort og konkret som muligt, list ikke tallene, som du får.
+                Formatér ikke teksten. Gør svaret så kort og konkret som muligt, list totalindtægt, totaludgift og overskud.
                 Anbefal tips til økonomien Maks 2000 tokens.
                 """;
 

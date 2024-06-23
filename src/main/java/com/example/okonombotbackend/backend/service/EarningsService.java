@@ -60,6 +60,7 @@ public class EarningsService {
             Earning earning = new Earning();
             earning.setUser(userRepository.findUserByUsername(earningRequest.getUsername()));
 
+            // Hvis den bruger allerede har samme subcategory, så opdater beløbet til den eksisterende subcategory
             if (earningsRepository.existsByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId())) {
                 Earning existingEarning = earningsRepository.findByUserAndSubcategoryId(userRepository.findUserByUsername(earningRequest.getUsername()), earningRequest.getSubcategoryId());
                 earning.setId(existingEarning.getId());
@@ -67,6 +68,8 @@ public class EarningsService {
                 earning.setAmount(earningRequest.getAmount());
                 existingEarning.setAmount(earningRequest.getAmount());
                 earningsRepository.save(existingEarning);
+
+                //hvis brugeren ikke har samme subcategory, så opret en ny subcategory
             } else {
                 earning.setSubcategory(subcategoryRepository.findSubcategoryById(earningRequest.getSubcategoryId()));
                 earning.setAmount(earningRequest.getAmount());

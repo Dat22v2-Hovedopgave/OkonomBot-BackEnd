@@ -3,6 +3,7 @@ package com.example.okonombotbackend.backend.api;
 import com.example.okonombotbackend.backend.dto.chatGPT.AI_DTO;
 import com.example.okonombotbackend.backend.service.RemoteApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
@@ -12,6 +13,7 @@ public class AIController {
     @Autowired
     private RemoteApiService remoteApiService;
 
+    //Henter respons fra ai. Tager imod data fra frontend og sender det videre til remoteApiService
     @PostMapping("/")
     public AI_DTO createUser(@RequestBody AI_DTO ai_dto) {
         return remoteApiService.responseFromAI(ai_dto);
